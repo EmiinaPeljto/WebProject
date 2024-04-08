@@ -1,0 +1,37 @@
+{
+  "cards": [
+    {
+      "price": 49,
+      "name": "Basic Plan",
+      "features": [
+        "Full Body Massage",
+        "Deep Tissue Massage",
+        "Hot Stone Massage",
+        "Tissue Body Polish",
+        "Foot & Nail Care"
+      ]
+    },
+    {
+      "price": 99,
+      "name": "Family Plan",
+      "features": [
+        "Full Body Massage",
+        "Deep Tissue Massage",
+        "Hot Stone Massage",
+        "Tissue Body Polish",
+        "Foot & Nail Care"
+      ]
+    },
+    {
+      "price": 149,
+      "name": "VIP Plan",
+      "features": [
+        "Full Body Massage",
+        "Deep Tissue Massage",
+        "Hot Stone Massage",
+        "Tissue Body Polish",
+        "Foot & Nail Care"
+      ]
+    }
+  ]
+}
