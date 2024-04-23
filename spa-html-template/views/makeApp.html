@@ -20,7 +20,7 @@
     <form
       class="form-card"
       style="margin-top: 70px"
-      onsubmit="return validateForm()"
+      onsubmit="return validateAppForm()"
     >
       <div class="row">
         <div class="col-md-6">
@@ -125,56 +125,3 @@
 
   <!-- Appointment End -->
 </div>
-
-<script>
-  //Validation
-  function validateForm() {
-    // Fetching values from all input fields and storing them in variables
-    var firstName = document.getElementById("firstName").value;
-    var lastName = document.getElementById("lastName").value;
-    var email = document.getElementById("email").value;
-    var phoneNumber = document.getElementById("phoneNumber").value;
-    var service = document.getElementById("service").value;
-    var time = document.getElementById("time").value;
-    var date = document.getElementById("date").value;
-
-    // Validation for empty fields
-    if (
-      firstName == "" ||
-      lastName == "" ||
-      email == "" ||
-      phoneNumber == "" ||
-      service == "Select A Service" ||
-      time == "" ||
-      date == ""
-    ) {
-      alert("Please fill all required fields");
-      return false;
-    }
-
-    // Validation for email format
-    var emailRegex = /\S+@\S+\.\S+/;
-    if (!emailRegex.test(email)) {
-      alert("Invalid email format");
-      return false;
-    }
-
-    // Validation for phone number format
-    var phoneRegex = /^[0-9]+$/;
-    if (!phoneRegex.test(phoneNumber)) {
-      alert("Phone number should contain only digits");
-      return false;
-    }
-
-    console.log("First Name: " + firstName);
-    console.log("Last Name: " + lastName);
-    console.log("Email: " + email);
-    console.log("Phone Number: " + phoneNumber);
-    console.log("Service: " + service);
-    console.log("Time: " + time);
-    console.log("Date: " + date);
-
-    // If all validations pass, return true for form submission
-    return true;
-  }
-</script>

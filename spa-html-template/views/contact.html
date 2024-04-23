@@ -40,13 +40,18 @@
           </h6>
           <h1 class="mb-5">Contact For Any Query</h1>
           <div id="success"></div>
-          <form name="sentMessage" id="contactForm" novalidate="novalidate">
+          <form
+            name="sentMessage"
+            id="contactForm"
+            novalidate="novalidate"
+            onsubmit="return validateContactForm()"
+          >
             <div class="form-row">
               <div class="col-sm-6 control-group">
                 <input
                   type="text"
                   class="form-control p-4"
-                  id="name"
+                  id="fullName"
                   placeholder="Your Name"
                   required="required"
                   data-validation-required-message="Please enter your name"
@@ -106,29 +111,3 @@
   </div>
 </div>
 <!-- Contact End -->
-
-<script>
-  document
-    .getElementById("contactForm")
-    .addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      // Get form input values
-      var name = document.getElementById("name").value;
-      var email = document.getElementById("email").value;
-      var subject = document.getElementById("subject").value;
-      var message = document.getElementById("message").value;
-
-      // Log input values to the console
-      console.log("Name: " + name);
-      console.log("Email: " + email);
-      console.log("Subject: " + subject);
-      console.log("Message: " + message);
-
-      // Clear form fields after submission (optional)
-      document.getElementById("name").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("subject").value = "";
-      document.getElementById("message").value = "";
-    });
-</script>
