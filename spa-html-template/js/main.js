@@ -33,18 +33,25 @@
     return false;
   });
 
-  // Facts counter
-  $('[data-toggle="counter-up"]').counterUp({
-    delay: 10,
-    time: 2000,
-  });
-
-  // Date and time picker
-  $("#date").datetimepicker({
-    format: "L",
-  });
-  $("#time").datetimepicker({
-    format: "LT",
+  // Pricing carousel
+  $(".pricing-carousel").owlCarousel({
+    autoplay: true,
+    smartSpeed: 1500,
+    margin: 30,
+    loop: true,
+    dots: false,
+    nav: false,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      576: {
+        items: 1,
+      },
+      768: {
+        items: 2,
+      },
+    },
   });
 
   // Service carousel
@@ -69,27 +76,6 @@
       },
       1200: {
         items: 5,
-      },
-    },
-  });
-
-  // Pricing carousel
-  $(".pricing-carousel").owlCarousel({
-    autoplay: true,
-    smartSpeed: 1500,
-    margin: 30,
-    loop: true,
-    dots: false,
-    nav: false,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      576: {
-        items: 1,
-      },
-      768: {
-        items: 2,
       },
     },
   });

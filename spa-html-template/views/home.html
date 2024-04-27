@@ -276,6 +276,7 @@
     </div>
     <!-- Service End -->
 
+    <!-- Pricing Start -->
     <div class="container-fluid bg-pricing" style="margin: 90px 0">
       <div class="container">
         <div class="row">
@@ -290,82 +291,15 @@
           </div>
           <div class="col-lg-7 pt-5 pb-lg-5">
             <div class="pricing-text bg-light p-4 p-lg-5 my-lg-5">
-              <div class="owl-carousel pricing-carousel">
-                <div class="bg-white"></div>
-              </div>
+              <div class="owl-carousel pricing-carousel"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
     <!-- Pricing End -->
-    </div>
   </div>
+</div>
+<script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+
 <script src="../js/main.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    fetch("../json/plans.json")
-      .then(response => response.json())
-      .then(data => {
-        const pricingCarousel = document.querySelector('.pricing-carousel');
-
-        data.cards.forEach(card => {
-          const cardDiv = document.createElement('div');
-          cardDiv.classList.add('bg-white');
-          cardDiv.style.minHeight = '300px';
-
-          const headerDiv = document.createElement('div');
-          headerDiv.classList.add('d-flex', 'align-items-center', 'justify-content-between', 'border-bottom', 'border-primary', 'p-4');
-
-          const priceH1 = document.createElement('h1');
-          priceH1.classList.add('display-4', 'mb-0');
-
-          const dollarSignSmall = document.createElement('small');
-          dollarSignSmall.classList.add('align-top', 'text-muted', 'font-weight-medium');
-          dollarSignSmall.style.fontSize = '22px';
-          dollarSignSmall.style.lineHeight = '45px';
-          dollarSignSmall.textContent = '$';
-
-          const priceSpan = document.createElement('span');
-          priceSpan.textContent = card.price;
-
-          const perMonthSmall = document.createElement('small');
-          perMonthSmall.classList.add('align-bottom', 'text-muted', 'font-weight-medium');
-          perMonthSmall.style.fontSize = '16px';
-          perMonthSmall.style.lineHeight = '40px';
-          perMonthSmall.textContent = '/Mo';
-
-          priceH1.appendChild(dollarSignSmall);
-          priceH1.appendChild(priceSpan);
-          priceH1.appendChild(perMonthSmall);
-
-          const nameH5 = document.createElement('h5');
-          nameH5.classList.add('text-primary', 'text-uppercase', 'm-0');
-          nameH5.textContent = card.name;
-
-          headerDiv.appendChild(priceH1);
-          headerDiv.appendChild(nameH5);
-
-          const featuresDiv = document.createElement('div');
-          featuresDiv.classList.add('p-4');
-
-          card.features.forEach(feature => {
-            const featureP = document.createElement('p');
-            const checkIcon = document.createElement('i');
-            checkIcon.classList.add('fa', 'fa-check', 'text-success', 'mr-2');
-            const featureSpan = document.createElement('span');
-            featureSpan.textContent = feature;
-            featureP.appendChild(checkIcon);
-            featureP.appendChild(featureSpan);
-            featuresDiv.appendChild(featureP);
-          });
-
-          cardDiv.appendChild(headerDiv);
-          cardDiv.appendChild(featuresDiv);
-          pricingCarousel.appendChild(cardDiv);
-        });
-      })
-      .catch(error => console.error('Error fetching data:', error));
-  });
-</script>
