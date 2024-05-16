@@ -1,4 +1,13 @@
-console.log("Script loaded");
+// Add this import statement
+/*!
+ * Start Bootstrap - Agency v7.0.12 (https://startbootstrap.com/theme/agency)
+ * Copyright 2013-2023 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-agency/blob/master/LICENSE)
+ */
+//
+// Scripts
+//
+
 var app = $.spapp({
   defaultView: "#home",
   templateDir: "./scss/",
@@ -6,17 +15,132 @@ var app = $.spapp({
   reloadView: true,
 });
 
-app.route({
-  view: "about",
-  load: "about.html",
-  onCreate: function () {
-    console.log("About is created");
-  },
-  onReady: function () {
-    console.log("About is ready");
-    console.log("constants", Constants.API_BASE_URL);
-    fetchTeamMembers();
-  },
+window.addEventListener("DOMContentLoaded", (event) => {
+  // Navbar shrink function
+  var navbarShrink = function () {
+    const navbarCollapsible = document.body.querySelector("#mainNav");
+    if (!navbarCollapsible) {
+      return;
+    }
+    if (window.scrollY === 0) {
+      navbarCollapsible.classList.remove("navbar-shrink");
+    } else {
+      navbarCollapsible.classList.add("navbar-shrink");
+    }
+  };
+
+  // Shrink the navbar
+  navbarShrink();
+
+  // Shrink the navbar when page is scrolled
+  document.addEventListener("scroll", navbarShrink);
+
+  //  Activate Bootstrap scrollspy on the main nav element
+  const mainNav = document.body.querySelector("#mainNav");
+  if (mainNav) {
+    new bootstrap.ScrollSpy(document.body, {
+      target: "#mainNav",
+      rootMargin: "0px 0px -40%",
+    });
+  }
+
+  // Collapse responsive navbar when toggler is visible
+  const navbarToggler = document.body.querySelector(".navbar-toggler");
+  const responsiveNavItems = [].slice.call(
+    document.querySelectorAll("#navbarResponsive .nav-link")
+  );
+  responsiveNavItems.map(function (responsiveNavItem) {
+    responsiveNavItem.addEventListener("click", () => {
+      if (window.getComputedStyle(navbarToggler).display !== "none") {
+        navbarToggler.click();
+      }
+    });
+  });
+});
+
+// Fetch categories from JSON file
+function getCategories(baseURL) {
+  fetch(baseURL)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const categories = document.querySelector("#category");
+      categories.innerHTML = "";
+      data.forEach((category) => {
+        const categoryElement = `
+        <div class="service-item">
+          <div class="w3-card-4">
+            <a href="#services"  style="text-decoration:none">
+              <img class="images" src="${category.image}">
+            </a>
+          <div class="w3-container w3-center">
+            <a href="#services"  style="text-decoration:none">
+              <h4>${category.title}</h4>
+            </a>
+          </div>
+          </div>
+        </div>
+        `;
+        categories.innerHTML += categoryElement;
+      });
+    });
+}
+
+// Fetch team members from JSON file
+
+function getTeamMembers(baseURL) {
+  fetch(baseURL)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      const teamMembers = document.querySelector("#team-members");
+      teamMembers.innerHTML = "";
+      console.log("teamMembers" + teamMembers);
+      data.forEach((member) => {
+        const memberElement = `
+        <div class="col-lg-4">
+        <div class="team-member">
+          <img
+            class="mx-auto rounded-circle"
+            src="${member.image}"
+            alt="..."
+          />
+          <h4>${member.name}</h4>
+          <p class="text-muted">${member.position}</p>
+          <a
+            class="btn btn-dark btn-social mx-2"
+            href="${member.x}"
+            aria-label="Parveen Anand Twitter Profile"
+            target="_blank"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a
+            class="btn btn-dark btn-social mx-2"
+            href="${member.facebook}"
+            aria-label="Parveen Anand Facebook Profile"
+            target="_blank"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a
+            class="btn btn-dark btn-social mx-2"
+            href="${member.linkedin}"
+            aria-label="Parveen Anand LinkedIn Profile"
+            target="_blank"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+        `;
+        teamMembers.innerHTML += memberElement;
+      });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  getCategories("../json/categories.json");
+  getTeamMembers("get_team_members.php");
 });
 
 //ValidationForAppointmentForm
@@ -78,43 +202,6 @@ function validateAppForm() {
   return true;
 }
 
-//ValidationForContactForm
-app.route({
-  view: "contact",
-  load: "contact.html",
-  onCreate: function () {},
-  onReady: function () {
-    validateContactForm();
-  },
-});
-
-function validateContactForm() {
-  var fullName = document.getElementById("fullName").value.trim();
-  var email = document.getElementById("email").value.trim();
-  var subject = document.getElementById("subject").value.trim();
-  var message = document.getElementById("message").value.trim();
-
-  // Validation for empty fields
-  if (fullName == "" || email == "" || subject == "" || message == "") {
-    alert("Please fill all required fields");
-    return false;
-  }
-
-  // Validation for email format
-  var emailRegex = /\S+@\S+\.\S+/;
-  if (!emailRegex.test(email)) {
-    alert("Invalid email format");
-    return false;
-  }
-
-  console.log("Full Name:", fullName);
-  console.log("Email:", email);
-  console.log("Subject:", subject);
-  console.log("Message:", message);
-
-  return true;
-}
-
 //ValidationForLoginForm
 app.route({
   view: "login",
@@ -126,6 +213,7 @@ app.route({
 });
 
 function validateLoginForm(event) {
+  4;
   event.preventDefault(); // Prevent form submission
 
   // Reset previous error messages
@@ -237,165 +325,3 @@ function validateSignUpForm(event) {
   console.log("Phone:", phone);
   console.log("Password:", password);
 }
-
-app.route({
-  view: "about",
-  load: "about.html",
-  onCreate: function () {
-    console.log("About is created");
-  },
-  onReady: function () {
-    console.log("About is ready");
-    console.log("constants", Constants.API_BASE_URL);
-    fetchTeamMembers("team_members-about");
-  },
-});
-
-function fetchTeamMembers(container_id) {
-  RestClient.get("get_team_members.php", function (data) {
-    console.log("Rest client data: ", data);
-    const teamContainer = document.getElementById(container_id);
-    console.log("teamContainer", teamContainer);
-    teamContainer.innerHTML = "";
-    data.forEach((member) => {
-      const memberElement = `
-                      <div class="col-lg-3 col-md-6">
-                          <div class="team card position-relative overflow-hidden border-0 mb-4">
-                              <img class="card-img-top" src="${member.image}" alt="${member.name}">
-                              <div class="card-body text-center p-0">
-                                  <div class="team-text d-flex flex-column justify-content-center bg-light">
-                                      <h5>${member.name}</h5>
-                                      <i>${member.position}</i>
-                                  </div>
-                                  <div class="team-social d-flex align-items-center justify-content-center bg-dark">
-                                      <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="${member.facebook}" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                      <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="${member.x}" target="_blank"><i class="fab fa-twitter"></i></a>
-                                      <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="${member.ln}"target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                                      <a class="btn btn-outline-primary rounded-circle text-center px-0" style="width: 36px; height: 36px;" href="${member.instagram}"target="_blank"><i class="fab fa-instagram"></i></a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  `;
-      teamContainer.innerHTML += memberElement;
-    });
-  });
-}
-
-document.addEventListener("DOMContentLoaded", async function () {
-  try {
-    const response = await fetch("../json/plans.json");
-    const data = await response.json();
-    const pricingCarousel = document.querySelector(".pricing-carousel");
-
-    data.cards.forEach((card) => {
-      const cardDiv = document.createElement("div");
-      cardDiv.classList.add("bg-white");
-      cardDiv.style.minHeight = "300px";
-
-      const headerDiv = document.createElement("div");
-      headerDiv.classList.add(
-        "d-flex",
-        "align-items-center",
-        "justify-content-between",
-        "border-bottom",
-        "border-primary",
-        "p-4"
-      );
-
-      const priceH1 = document.createElement("h1");
-      priceH1.classList.add("display-4", "mb-0");
-
-      const dollarSignSmall = document.createElement("small");
-      dollarSignSmall.classList.add(
-        "align-top",
-        "text-muted",
-        "font-weight-medium"
-      );
-      dollarSignSmall.style.fontSize = "22px";
-      dollarSignSmall.style.lineHeight = "45px";
-      dollarSignSmall.textContent = "$";
-
-      const priceSpan = document.createElement("span");
-      priceSpan.textContent = card.price;
-
-      const perMonthSmall = document.createElement("small");
-      perMonthSmall.classList.add(
-        "align-bottom",
-        "text-muted",
-        "font-weight-medium"
-      );
-      perMonthSmall.style.fontSize = "16px";
-      perMonthSmall.style.lineHeight = "40px";
-      perMonthSmall.textContent = "/Mo";
-
-      priceH1.appendChild(dollarSignSmall);
-      priceH1.appendChild(priceSpan);
-      priceH1.appendChild(perMonthSmall);
-
-      const nameH5 = document.createElement("h5");
-      nameH5.classList.add("text-primary", "text-uppercase", "m-0");
-      nameH5.textContent = card.name;
-
-      headerDiv.appendChild(priceH1);
-      headerDiv.appendChild(nameH5);
-
-      const featuresDiv = document.createElement("div");
-      featuresDiv.classList.add("p-4");
-
-      card.features.forEach((feature) => {
-        const featureP = document.createElement("p");
-        const checkIcon = document.createElement("i");
-        checkIcon.classList.add("fa", "fa-check", "text-success", "mr-2");
-        const featureSpan = document.createElement("span");
-        featureSpan.textContent = feature;
-        featureP.appendChild(checkIcon);
-        featureP.appendChild(featureSpan);
-        featuresDiv.appendChild(featureP);
-      });
-
-      cardDiv.appendChild(headerDiv);
-      cardDiv.appendChild(featuresDiv);
-      pricingCarousel.appendChild(cardDiv);
-    });
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-});
-
-// Function to fetch data from the JSON file
-function fetchData() {
-  return fetch("../json/prices.json")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-}
-
-// Function to populate the table with data
-function populateTable(data) {
-  const tableBody = document.querySelector("#priceTable tbody");
-  tableBody.innerHTML = ""; // Clear previous data
-
-  data.forEach((item) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-              <th scope="row">${item.id}</th>
-              <td>${item.service}</td>
-              <td>${item.price}</td>
-          `;
-    tableBody.appendChild(row);
-  });
-}
-
-// Fetch data and populate the table
-fetchData().then((data) => {
-  if (data) {
-    populateTable(data.pricelist);
-  }
-});

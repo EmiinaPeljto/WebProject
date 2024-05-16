@@ -1,0 +1,27 @@
+[
+  {
+    "image": "../assets/img/team/images.jpeg",
+    "name": "Anna Stark",
+    "position": "Nail artist",
+    "x": "https://twitter.com",
+    "facebook": "https://www.facebook.com",
+    "linkedin": "https://www.linkedin.com"
+  },
+
+  {
+    "image": "../assets/img/team/2.jpg",
+    "name": "Diana Petersen",
+    "position": "Beauty expert",
+    "x": "https://twitter.com",
+    "facebook": "https://www.facebook.com",
+    "linkedin": "https://www.linkedin.com"
+  },
+  {
+    "image": "../assets/img/team/download (8).jpeg",
+    "name": "Lara Parker",
+    "position": "Skincare expert",
+    "x": "https://twitter.com",
+    "facebook": "https://www.facebook.com",
+    "linkedin": "https://www.linkedin.com"
+  }
+]

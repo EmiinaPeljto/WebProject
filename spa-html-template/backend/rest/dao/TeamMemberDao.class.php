@@ -6,7 +6,7 @@ class TeamMemberDao extends BaseDao
 {
     public function __construct()
     {
-        parent::__construct('team');
+        parent::__construct('teams');
     }
 
     public function get_team_members()
