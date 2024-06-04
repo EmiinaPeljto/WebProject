@@ -1,0 +1,39 @@
+[
+  {
+    "image": "../frontend/assets/img/team-1.jpg",
+    "name": "Anna Stark",
+    "position": "Nail artist",
+    "x": "https://twitter.com",
+    "facebook": "https://www.facebook.com",
+    "instagram": "https://www.instagram.com",
+    "linkedin": "https://www.linkedin.com"
+  },
+
+  {
+    "image": "../frontend/assets/img/team-2.jpg",
+    "name": "Diana Petersen",
+    "position": "Beauty expert",
+    "x": "https://twitter.com",
+    "facebook": "https://www.facebook.com",
+    "instagram": "https://www.instagram.com",
+    "linkedin": "https://www.linkedin.com"
+  },
+  {
+    "image": "../frontend/assets/img/team-3.jpg",
+    "name": "Lara Parker",
+    "position": "Skincare expert",
+    "x": "https://twitter.com",
+    "facebook": "https://www.facebook.com",
+    "instagram": "https://www.instagram.com",
+    "linkedin": "https://www.linkedin.com"
+  },
+  {
+    "image": "../frontend/assets/img/team-4.jpg",
+    "name": "Maria Parker",
+    "position": "Skincare expert",
+    "x": "https://twitter.com",
+    "facebook": "https://www.facebook.com",
+    "instagram": "https://www.instagram.com",
+    "linkedin": "https://www.linkedin.com"
+  }
+]
