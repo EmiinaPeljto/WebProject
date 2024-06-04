@@ -1,0 +1,66 @@
+<div class="logInDiv">
+  <div class="containerLogIn">
+    <h2 class="logInn">Login</h2>
+    <p class="texth6">Log in with your email and password</p>
+    <form id="logInForm" method="post">
+      <div class="form-group">
+        <label for="email">Your email</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter Username"
+          name="email"
+          required=""
+        />
+        <span id="emailError" class="error"></span>
+      </div>
+      <div class="form-group">
+        <label for="password">Your password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter Password"
+          required=""
+        />
+        <span id="passwordError" class="error"></span>
+      </div>
+      <div class="form-group1">
+        <label for="remember-me">Remember me</label>
+        <input type="checkbox" id="remember_me" name="remember_me" />
+      </div>
+      <div class="form-group">
+        <button type="submit">Login</button>
+      </div>
+      <div class="form-group">
+        <p class="text-center">
+          Don't have an account? <a href="#signup">SignUp</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    FormValidation.validate(
+      "#logInForm",
+      {
+        email: {
+          required: true,
+          email: true,
+        },
+        password: {
+          required: true,
+          minlength: 8,
+        },
+      },
+      function (data) {
+        Utils.block_ui("#logInForm");
+        console.log(data);
+        toastr.success("You are logged in successfully");
+        $("#logInForm").trigger("reset");
+        Utils.unblock_ui("#logInForm");
+      }
+    );
+  });
+</script>

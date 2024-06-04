@@ -1,0 +1,203 @@
+<!-- Header Start -->
+<div class="jumbotron jumbotron-fluid bg-jumbotron" style="margin-top: 76px;">
+  <div class="container text-center py-5">
+    <h3 class="text-white display-3 mb-4">Make An Appointment</h3>
+    <h5 class="text-white" style="margin-bottom: 1rem">
+      Please fill out the appointment form below to make appointment
+    </h5>
+    <div class="d-inline-flex align-items-center text-white">
+      <p class="m-0"><a class="text-white" href="#home">Home</a></p>
+      <i class="far fa-circle px-3"></i>
+      <p class="m-0">Appointment</p>
+    </div>
+  </div>
+</div>
+<!-- Header End -->
+
+<!-- Appointment Start -->
+<div class="container-fluid py-5 col-lg-11">
+  <form
+    class="form-card"
+    method="post"
+    style="margin-top: 70px"
+    id="appointmentForm"
+    
+  >
+    <div class="row">
+      <input type="hidden" name="user_id" id="user_service_id" />
+      <div class="col-md-6">
+        <div class="form-group">
+          <input
+            id="first_name"
+            type="text"
+            class="form-control"
+            name="first_name"
+            placeholder="First Name*"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <input
+            id="last_name"
+            name="last_name"
+            type="text"
+            class="form-control"
+            placeholder="Last Name*"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <input
+            id="email"
+            type="email"
+            name="email"
+            class="form-control"
+            placeholder="Email*"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <input
+            id="phone"
+            type="text"
+            name="phone"
+            class="form-control"
+            placeholder="Phone Number*"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <select
+            id="service"
+            name="service_id"
+            class="custom-select form-control"
+            style="width: 90%"
+          >
+            <option selected>Select A Service</option>
+            <option value="1">Hydrating Facial</option>
+            <option value="2">Deep Cleansing Facial</option>
+            <option value="3">Anti-Aging Facial</option>
+            <option value="4">Brightening Facial</option>
+            <option value="5">Body Scrub</option>
+            <option value="6">Body Wrap</option>
+            <option value="7">Hydrating Body Wrap</option>
+            <option value="8">Cellulite Reduction</option>
+            <option value="9">Swedish Massage</option>
+            <option value="10">Deep Tissue Massage</option>
+            <option value="11">Hot Stone Massage</option>
+            <option value="12">Aromatherapy Massage</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <select
+            id="team"
+            name="team_id"
+            class="custom-select form-control"
+            style="width: 90%"
+          >
+            <option selected>Select A Specialis</option>
+            <option value="1">Anna Stark</option>
+            <option value="2">Diana Petersenl</option>
+            <option value="3">Lara Parker</option>
+            <option value="4">Maria Parker</option>
+          </select>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <input
+            required
+            id="date"
+            type="date"
+            name="date"
+            class="form-control"
+            style="width: 96%"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <input
+            required
+            id="time"
+            type="time"
+            name="time"
+            class="form-control"
+            placeholder="Choose Time"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 offset-md-4 text-center">
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          onclick="add_app()"
+        >
+          Make An Appointment
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  function add_app () {
+    FormValidation.validate(
+      "#appointmentForm",
+      {
+        first_name: {
+          required: true,
+          minlength: 3,
+        },
+        last_name: {
+          required: true,
+          minlength: 3,
+        },
+        email: {
+          required: true,
+          email: true,
+        },
+        phone: {
+          required: true,
+        },
+        service_id: {
+          required: true,
+        },
+        team_id: {
+          required: true,
+        },
+        date: {
+          required: true,
+        },
+        time: {
+          required: true,
+        },
+      },
+      function (data) {
+        Utils.block_ui("#appointmentForm");
+        RestClient.post("appointment", data, function (response) {
+          Utils.unblock_ui("#appointmentForm");
+          toastr.success("Appointment has been made successfully");
+        });
+      },
+      function (xhr) {
+        Utils.unblock_ui("#appointmentForm");
+        toastr.error(xhr);
+      }
+    );
+  }
+
+</script>

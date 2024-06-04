@@ -1,0 +1,137 @@
+<div class="logInDiv">
+  <div class="containerSignUp col-lg-6">
+    <h2 class="logInn">SignUp</h2>
+    <p class="texth6">Get started with free account</p>
+    <form id="signUpForm" method="post">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="first_name">First name</label>
+            <input
+              type="text"
+              id="first_name"
+              name="first_name"
+              placeholder="Enter First Name"
+              required=""
+            />
+            <span id="firstNameError" class="error"></span>
+          </div>
+          <div class="col-sm-6">
+            <label for="last_name">Last name</label>
+            <input
+              type="text"
+              id="last_name"
+              name="last_name"
+              placeholder="Enter Last Name"
+              required=""
+            />
+            <span id="lastNameError" class="error"></span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter E-mail"
+              required=""
+            />
+            <span id="emailError" class="error"></span>
+          </div>
+          <div class="col-sm-6">
+            <label for="phone">Phone number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Enter Phone Number"
+              required=""
+            />
+            <span id="phoneError" class="error"></span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter Password"
+              required=""
+            />
+            <span id="passwordError" class="error"></span>
+          </div>
+          <div class="col-sm-6">
+            <label for="confirm_password">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+              placeholder="Confirm Password"
+              required=""
+            />
+            <span id="confirmPasswordError" class="error"></span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" onclick="add_user()">SignUp</button>
+      </div>
+      <div class="form-group">
+        <p class="text-center">Have An Account? <a href="#login">Log In</a></p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function add_user() {
+    FormValidation.validate(
+      "#signUpForm",
+      {
+        first_name: {
+          required: true,
+          minlength: 3,
+        },
+        last_name: {
+          required: true,
+          minlength: 3,
+        },
+        email: {
+          required: true,
+          email: true,
+        },
+        phone: {
+          required: true,
+        },
+        password: {
+          required: true,
+          minlength: 8,
+        },
+        confirm_password: {
+          required: true,
+          equalTo: "#password",
+        },
+      },
+      function (data) {
+        Utils.block_ui("#signUpForm");
+        RestClient.post("users/signUp", data, function (response) {
+          Utils.unblock_ui("#signUpForm");
+          $("#signUpForm").trigger("reset");
+          toastr.success("You are signed up successfully");
+        });
+      },
+      function (xhr) {
+        Utils.unblock_ui("#signUpForm");
+        toastr.error(xhr);
+      }
+    );
+  }
+</script>

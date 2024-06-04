@@ -1,0 +1,86 @@
+[
+  {
+    "image": "../frontend/assets/img/about.jpg",
+    "title": "Hydrating Facial",
+    "description": "Designed to replenish moisture and revitalize dry skin, leaving it soft and supple.",
+    "price": 50,
+    "category": "facial"
+  },
+  {
+    "image": "../frontend/assets/img/facial.jpg",
+    "title": "Deep Cleansing Facial",
+    "description": "Targets clogged pores and impurities, purifying the skin and preventing breakouts.",
+    "price": 60,
+    "category": "facial"
+  },
+  {
+    "image": "../frontend/assets/img/service-6.jpg",
+    "title": "Anti-Aging Facial",
+    "description": "Addresses signs of aging such as fine lines and wrinkles, promoting firmer, youthful-looking skin.",
+    "price": 70,
+    "category": "facial"
+  },
+  {
+    "image": "../frontend/assets/img/service-2.jpg",
+    "title": "Brightening Facial",
+    "description": "Helps to reduce dark spots and uneven skin tone, revealing a radiant complexion.",
+    "price": 40,
+    "category": "facial"
+  },
+  {
+    "image": "../frontend/assets/img/side-view-woman-getting-massaged-spa.jpg",
+    "title": "Body Scrub",
+    "description": "Exfoliates and removes dead skin cells, leaving the skin smooth and rejuvenated.",
+    "price": 30,
+    "category": "body"
+  },
+  {
+    "image": "../frontend/assets/img/wrap.jpeg",
+    "title": "Body Wrap",
+    "description": "Uses various ingredients like seaweed, or clay to detoxify the body and improve circulation.",
+    "price": 30,
+    "category": "body"
+  },
+  {
+    "image": "../frontend/assets/img/wrap2.jpeg",
+    "title": "Hydrating Body Wrap",
+    "description": "Nourishes and moisturizes the skin deeply, restoring its natural glow and hydration.",
+    "price": 40,
+    "category": "body"
+  },
+  {
+    "image": "../frontend/assets/img/cellulite.jpeg",
+    "title": "Cellulite Reduction",
+    "description": "Targets areas prone to cellulite, using techniques like massage, lymphatic drainage.",
+    "price": 40,
+    "category": "body"
+  },
+  {
+    "image": "../frontend/assets/img/service-3.jpg",
+    "title": "Swedish Massage",
+    "description": "A gentle, relaxing massage that uses long strokes, kneading, and circular movements to promote relaxation and improve circulation.",
+    "price": 60,
+    "category": "massage"
+  },
+  {
+    "image": "../frontend/assets/img/carousel-1.jpg",
+    "title": "Deep Tissue Massage",
+    "description": "Targets deeper layers of muscles and connective tissue to release chronic tension and knots, providing relief from muscle pain.",
+    "price": 40,
+    "category": "massage"
+  },
+  {
+    "image": "../frontend/assets/img/carousel-3.jpg",
+    "title": "Hot Stone Massage",
+    "description": "Incorporates heated stones to provide deep relaxation and relief from muscle tension and pain. The heat helps to relax the muscles.",
+    "price": 70,
+    "category": "massage"
+  },
+  {
+    "image": "../frontend/assets/img/carousel-2.jpg",
+    "title": "Aromatherapy Massage",
+    "description": "Combines massage techniques with the use of essential oils to enhance relaxation, reduce stress, alleviate specific ailments or concerns",
+    "price": 50,
+    "category": "massage"
+  }
+]
